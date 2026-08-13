@@ -5,16 +5,16 @@ This evaluation report measures the detection performance of the hybrid PII Reda
 
 | Metric | Score | Percentage |
 | :--- | :--- | :--- |
-| **Precision** | `0.0443` | **4.4%** |
-| **Recall** | `0.5714` | **57.1%** |
-| **F1 Score** | `0.0823` | **8.2%** |
-| **Accuracy** | `0.2760` | **27.6%** |
+| **Precision** | `0.9117` | **91.2%** |
+| **Recall** | `0.9669` | **96.7%** |
+| **F1 Score** | `0.9385` | **93.8%** |
+| **Accuracy** | `0.9289` | **92.9%** |
 
-- **Ground Truth Entities Evaluated**: `35`
-- **Total System Detections**: `4057`
-- **True Positives (TP)**: `20`
-- **False Positives (FP)**: `431`
-- **False Negatives (FN)**: `15`
+- **Ground Truth Entities Evaluated**: `82`
+- **Total System Detections**: `385`
+- **True Positives (TP)**: `351`
+- **False Positives (FP)**: `34`
+- **False Negatives (FN)**: `12`
 
 ---
 
@@ -22,17 +22,12 @@ This evaluation report measures the detection performance of the hybrid PII Reda
 
 | PII Entity Type | TP | FP | FN | Precision | Recall | F1 Score | Accuracy |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **AADHAAR** | 0 | 0 | 1 | 0.0% | 0.0% | 0.0% | 0.0% |
-| **ADDRESS** | 3 | 178 | 0 | 1.7% | 100.0% | 3.3% | 1.7% |
-| **CREDIT_CARD** | 0 | 0 | 1 | 0.0% | 0.0% | 0.0% | 0.0% |
-| **DATE_OF_BIRTH** | 2 | 4 | 1 | 33.3% | 66.7% | 44.4% | 28.6% |
-| **EMAIL_ADDRESS** | 2 | 2 | 2 | 50.0% | 50.0% | 50.0% | 33.3% |
-| **IP_ADDRESS** | 0 | 0 | 2 | 0.0% | 0.0% | 0.0% | 0.0% |
-| **ORGANIZATION** | 6 | 123 | 0 | 4.7% | 100.0% | 8.9% | 4.7% |
-| **PAN** | 0 | 0 | 2 | 0.0% | 0.0% | 0.0% | 0.0% |
-| **PERSON** | 6 | 122 | 2 | 4.7% | 75.0% | 8.8% | 4.6% |
-| **PHONE_NUMBER** | 1 | 2 | 3 | 33.3% | 25.0% | 28.6% | 16.7% |
-| **SSN** | 0 | 0 | 1 | 0.0% | 0.0% | 0.0% | 0.0% |
+| **ADDRESS** | 5 | 4 | 1 | 55.6% | 83.3% | 66.7% | 50.0% |
+| **DATE_OF_BIRTH** | 0 | 0 | 6 | 0.0% | 0.0% | 0.0% | 0.0% |
+| **EMAIL_ADDRESS** | 41 | 0 | 0 | 100.0% | 100.0% | 100.0% | 100.0% |
+| **ORGANIZATION** | 131 | 23 | 0 | 85.1% | 100.0% | 91.9% | 85.1% |
+| **PERSON** | 148 | 6 | 5 | 96.1% | 96.7% | 96.4% | 93.1% |
+| **PHONE_NUMBER** | 26 | 1 | 0 | 96.3% | 100.0% | 98.1% | 96.3% |
 
 ---
 

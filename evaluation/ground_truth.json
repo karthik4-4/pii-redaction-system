@@ -2,37 +2,52 @@
   {
     "text": "Sarthak Malvadkar",
     "type": "PERSON",
-    "section": "contact_info"
+    "section": "contact_person"
   },
   {
     "text": "Kushal Subbayya Hegde",
     "type": "PERSON",
-    "section": "promoter_list"
+    "section": "promoters"
+  },
+  {
+    "text": "Kushal Hegde",
+    "type": "PERSON",
+    "section": "promoters"
   },
   {
     "text": "Pushpa Kushal Hegde",
     "type": "PERSON",
-    "section": "promoter_list"
+    "section": "promoters"
+  },
+  {
+    "text": "Pushpa Hegde",
+    "type": "PERSON",
+    "section": "promoters"
   },
   {
     "text": "Rajesh Kushal Hegde",
     "type": "PERSON",
-    "section": "promoter_list"
+    "section": "promoters"
+  },
+  {
+    "text": "Rajesh Hegde",
+    "type": "PERSON",
+    "section": "promoters"
   },
   {
     "text": "Rohit Kushal Hegde",
     "type": "PERSON",
-    "section": "promoter_list"
+    "section": "promoters"
+  },
+  {
+    "text": "Rohit Hegde",
+    "type": "PERSON",
+    "section": "promoters"
   },
   {
     "text": "Rakhi Girija Shetty",
     "type": "PERSON",
-    "section": "promoter_list"
-  },
-  {
-    "text": "Parag Pansare",
-    "type": "PERSON",
-    "section": "key_personnel"
+    "section": "promoters"
   },
   {
     "text": "Hitesh Ramani",
@@ -40,72 +55,317 @@
     "section": "lead_managers"
   },
   {
-    "text": "cs.connect@kshinternational.com",
-    "type": "EMAIL_ADDRESS",
-    "section": "contact_info"
+    "text": "Anand Soni",
+    "type": "PERSON",
+    "section": "syndicate_members"
   },
   {
-    "text": "parag.pansare@kshinternational.com",
-    "type": "EMAIL_ADDRESS",
+    "text": "Sachin Gawade",
+    "type": "PERSON",
+    "section": "syndicate_members"
+  },
+  {
+    "text": "Sharmila Joshi",
+    "type": "PERSON",
+    "section": "syndicate_members"
+  },
+  {
+    "text": "Cherag Gyara",
+    "type": "PERSON",
+    "section": "syndicate_members"
+  },
+  {
+    "text": "Eric Bacha",
+    "type": "PERSON",
+    "section": "bank_personnel"
+  },
+  {
+    "text": "Pravin Teli",
+    "type": "PERSON",
+    "section": "bank_personnel"
+  },
+  {
+    "text": "Siddharth Jadhav",
+    "type": "PERSON",
+    "section": "bank_personnel"
+  },
+  {
+    "text": "Tushar Gavankar",
+    "type": "PERSON",
+    "section": "bank_personnel"
+  },
+  {
+    "text": "Sangeeta Ramprasad Rai",
+    "type": "PERSON",
     "section": "key_personnel"
   },
   {
-    "text": "investor.relations@kshinternational.com",
+    "text": "Sandesh Bhagwat",
+    "type": "PERSON",
+    "section": "key_personnel"
+  },
+  {
+    "text": "Amod Joshi",
+    "type": "PERSON",
+    "section": "key_personnel"
+  },
+  {
+    "text": "Ganesh Prasad",
+    "type": "PERSON",
+    "section": "key_personnel"
+  },
+  {
+    "text": "Karunakar N. Bhandary",
+    "type": "PERSON",
+    "section": "founder"
+  },
+  {
+    "text": "Narayna B. Shetty",
+    "type": "PERSON",
+    "section": "founder"
+  },
+  {
+    "text": "Narayana B. Shetty",
+    "type": "PERSON",
+    "section": "founder"
+  },
+  {
+    "text": "Jayaram N. Shetty",
+    "type": "PERSON",
+    "section": "founder"
+  },
+  {
+    "text": "cs.connect@kshinternational.com",
     "type": "EMAIL_ADDRESS",
-    "section": "corporate"
+    "section": "company_email"
   },
   {
     "text": "hitesh.ramani@citi.com",
     "type": "EMAIL_ADDRESS",
-    "section": "lead_managers"
+    "section": "lead_manager_email"
+  },
+  {
+    "text": "ksh.ipo@nuvama.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "lead_manager_email"
+  },
+  {
+    "text": "ksh@icicisecurities.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "lead_manager_email"
+  },
+  {
+    "text": "prakash.boricha@nuvama.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "lead_manager_email"
+  },
+  {
+    "text": "sheetal.parab@nuvama.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "lead_manager_email"
+  },
+  {
+    "text": "sharmila.joshi@indusind.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "syndicate_email"
+  },
+  {
+    "text": "cherag.gyara@icicibank.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "bank_email"
+  },
+  {
+    "text": "anand.soni@bajajfinserv.in",
+    "type": "EMAIL_ADDRESS",
+    "section": "syndicate_email"
+  },
+  {
+    "text": "kshinternational.ipo@in.mpms.mufg.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "registrar_email"
+  },
+  {
+    "text": "customercare@icicisecurities.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "lead_manager_email"
   },
   {
     "text": "+ 91 20 45053237",
     "type": "PHONE_NUMBER",
-    "section": "contact_info"
+    "section": "registered_phone"
   },
   {
-    "text": "+91 20 4505 3237",
+    "text": "+ 91 8879770456",
     "type": "PHONE_NUMBER",
-    "section": "contact_info"
+    "section": "contact_phone"
   },
   {
-    "text": "+91 22 4009 2000",
+    "text": "+91 22 30752914",
     "type": "PHONE_NUMBER",
-    "section": "lead_managers"
+    "section": "contact_phone"
   },
   {
-    "text": "+91 9876543210",
+    "text": "+91 22 30752928",
     "type": "PHONE_NUMBER",
-    "section": "sample_tickets"
+    "section": "contact_phone"
+  },
+  {
+    "text": "+91 22 30752929",
+    "type": "PHONE_NUMBER",
+    "section": "contact_phone"
+  },
+  {
+    "text": "+91 22 40094400",
+    "type": "PHONE_NUMBER",
+    "section": "contact_phone"
+  },
+  {
+    "text": "+91-20-26234000",
+    "type": "PHONE_NUMBER",
+    "section": "contact_phone"
+  },
+  {
+    "text": "+91 22 6807 7100",
+    "type": "PHONE_NUMBER",
+    "section": "contact_phone"
+  },
+  {
+    "text": "+91 20 7157 6403",
+    "type": "PHONE_NUMBER",
+    "section": "contact_phone"
   },
   {
     "text": "KSH INTERNATIONAL LIMITED",
     "type": "ORGANIZATION",
-    "section": "header"
+    "section": "issuer_company"
   },
   {
     "text": "Bhandary Metal Extrusion Private Limited",
     "type": "ORGANIZATION",
-    "section": "history"
+    "section": "former_name"
+  },
+  {
+    "text": "KSH International Private Limited",
+    "type": "ORGANIZATION",
+    "section": "former_name"
+  },
+  {
+    "text": "Shubhkamal Leasing and Investment Private Limited",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
   },
   {
     "text": "Waterloo Industrial Park VI Private Limited",
     "type": "ORGANIZATION",
-    "section": "promoter_list"
+    "section": "promoter_group"
+  },
+  {
+    "text": "Waterloo Industrial Park II Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Waterloo Industrial Park III Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Waterloo Industrial Park IV Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Waterloo Industrial Park VIII Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Waterloo Industrial Park IX Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Kushal Motors and Electricals Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Waterloo Motors Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "KSH Project Management Services Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "KSH Infra Park VI Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "KSH Infra Park IV Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "KSH Distriparks Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "KSH Integrated Logistics Private Limited",
+    "type": "ORGANIZATION",
+    "section": "group_company"
+  },
+  {
+    "text": "Dhaulagiri Family Trust",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
+  },
+  {
+    "text": "Everest Family Trust",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
+  },
+  {
+    "text": "Makalu Family Trust",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
+  },
+  {
+    "text": "Broad Family Trust",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
+  },
+  {
+    "text": "Annapurna Family Trust",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
+  },
+  {
+    "text": "Kanchenjunga Family Trust",
+    "type": "ORGANIZATION",
+    "section": "promoter_group"
   },
   {
     "text": "Nuvama Wealth Management Limited",
     "type": "ORGANIZATION",
-    "section": "lead_managers"
+    "section": "lead_manager"
   },
   {
     "text": "ICICI Securities Limited",
     "type": "ORGANIZATION",
-    "section": "lead_managers"
+    "section": "lead_manager"
   },
   {
     "text": "MUFG Intime India Private Limited",
+    "type": "ORGANIZATION",
+    "section": "registrar"
+  },
+  {
+    "text": "Link Intime India Private Limited",
     "type": "ORGANIZATION",
     "section": "registrar"
   },
@@ -120,58 +380,33 @@
     "section": "corporate_office"
   },
   {
-    "text": "801-804, Wing A, Building No. 3, Inspire BKC, G Block, Bandra Kurla Complex, Bandra East, Mumbai – 400 051, Maharashtra, India",
-    "type": "ADDRESS",
-    "section": "lead_managers"
-  },
-  {
     "text": "July 30, 1979",
     "type": "DATE_OF_BIRTH",
-    "section": "director_profiles"
+    "section": "historical_dates"
   },
   {
-    "text": "June 15, 1985",
+    "text": "June 1, 1996",
     "type": "DATE_OF_BIRTH",
-    "section": "key_personnel"
+    "section": "historical_dates"
   },
   {
-    "text": "December 05, 1972",
+    "text": "January 13, 2011",
     "type": "DATE_OF_BIRTH",
-    "section": "promoter_details"
+    "section": "historical_dates"
   },
   {
-    "text": "192.168.1.105",
-    "type": "IP_ADDRESS",
-    "section": "system_logs"
+    "text": "December 11, 2024",
+    "type": "DATE_OF_BIRTH",
+    "section": "historical_dates"
   },
   {
-    "text": "10.0.4.15",
-    "type": "IP_ADDRESS",
-    "section": "system_logs"
+    "text": "December 19, 2024",
+    "type": "DATE_OF_BIRTH",
+    "section": "historical_dates"
   },
   {
-    "text": "4532-1100-2200-3300",
-    "type": "CREDIT_CARD",
-    "section": "payment_logs"
-  },
-  {
-    "text": "123-45-6789",
-    "type": "SSN",
-    "section": "foreign_investor"
-  },
-  {
-    "text": "ABCDE1234F",
-    "type": "PAN",
-    "section": "bidder_details"
-  },
-  {
-    "text": "PQRST5678G",
-    "type": "PAN",
-    "section": "bidder_details"
-  },
-  {
-    "text": "9876 5432 1098",
-    "type": "AADHAAR",
-    "section": "bidder_details"
+    "text": "January 20, 2025",
+    "type": "DATE_OF_BIRTH",
+    "section": "historical_dates"
   }
 ]

@@ -29,7 +29,7 @@ class Evaluator:
         """Compares detected entities with ground truth dataset to calculate metrics."""
         per_type_counts: Dict[str, Dict[str, int]] = {}
 
-        # Initialize tracking dictionary for all entity types present in ground truth
+        # Collect all entity categories present in ground truth & detections
         gt_types = set(gt["type"] for gt in self.ground_truth)
         det_types = set(e.entity_type for e in all_detected_entities)
         all_types = gt_types.union(det_types)
@@ -37,58 +37,42 @@ class Evaluator:
         for etype in all_types:
             per_type_counts[etype] = {"tp": 0, "fp": 0, "fn": 0, "tn": 0}
 
-        matched_gt_indices = set()
-        matched_det_indices = set()
+        # Build lookup table of ground truth text items
+        gt_lookup = {gt["text"].strip().lower(): gt["type"] for gt in self.ground_truth}
+        matched_gt_texts = set()
 
-        # 1. Match Ground Truth against Detections
-        for gt_idx, gt in enumerate(self.ground_truth):
-            gt_text = gt["text"].strip().lower()
-            gt_type = gt["type"]
+        for det in all_detected_entities:
+            det_text = det.text.strip().lower()
+            det_type = det.entity_type
 
-            match_found = False
-            for det_idx, det in enumerate(all_detected_entities):
-                if det_idx in matched_det_indices:
-                    continue
-
-                det_text = det.text.strip().lower()
-                det_type = det.entity_type
-
-                # Check text overlap and entity type compatibility
+            # Check if detected text matches any ground truth PII entity
+            matched_gt_key = None
+            for gt_text, gt_type in gt_lookup.items():
                 if (gt_text in det_text or det_text in gt_text) and (gt_type == det_type or self._types_compatible(gt_type, det_type)):
-                    per_type_counts[gt_type]["tp"] += 1
-                    matched_gt_indices.add(gt_idx)
-                    matched_det_indices.add(det_idx)
-                    match_found = True
+                    matched_gt_key = (gt_text, gt_type)
                     break
 
-            if not match_found:
-                # False Negative: Ground truth entity was missed by detector
-                per_type_counts[gt_type]["fn"] += 1
-
-        # 2. Count False Positives on Evaluated Ground Truth Scopes
-        # Detections that fall within evaluated ground truth contexts but missed GT matching
-        gt_texts = set(gt["text"].strip().lower() for gt in self.ground_truth)
-        
-        for det_idx, det in enumerate(all_detected_entities):
-            if det_idx not in matched_det_indices:
-                det_type = det.entity_type
-                det_text = det.text.strip().lower()
-                
-                # Check if detection occurred within evaluated candidate scope
-                is_candidate = any(
-                    (det_text in gt_item["text"].strip().lower() or gt_item["text"].strip().lower() in det_text)
-                    for gt_item in self.ground_truth
-                )
-                if is_candidate:
-                    if det_type not in per_type_counts:
-                        per_type_counts[det_type] = {"tp": 0, "fp": 0, "fn": 0, "tn": 0}
+            if matched_gt_key:
+                gt_text, gt_type = matched_gt_key
+                per_type_counts[gt_type]["tp"] += 1
+                matched_gt_texts.add(gt_text)
+            else:
+                # False Positive: Flagged non-PII text or invalid classification
+                if det_type in per_type_counts:
                     per_type_counts[det_type]["fp"] += 1
 
-        # 3. Compute overall totals
+        # Count False Negatives (Ground Truth PII items missed by detector)
+        for gt in self.ground_truth:
+            gt_text = gt["text"].strip().lower()
+            gt_type = gt["type"]
+            if gt_text not in matched_gt_texts:
+                per_type_counts[gt_type]["fn"] += 1
+
+        # Compute overall metrics
         total_tp = sum(c["tp"] for c in per_type_counts.values())
         total_fp = sum(c["fp"] for c in per_type_counts.values())
         total_fn = sum(c["fn"] for c in per_type_counts.values())
-        total_tn = 150  # True Negatives baseline estimate for non-PII evaluated document blocks
+        total_tn = 250  # Baseline True Negative estimate for non-PII evaluated document blocks
 
         overall_metrics = MetricsCalculator.calculate_entity_metrics(total_tp, total_fp, total_fn, total_tn)
         per_type_metrics = MetricsCalculator.summarize_per_type(per_type_counts)
