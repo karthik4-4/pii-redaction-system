@@ -122,7 +122,7 @@ A context-aware PII Detection, Pseudonymization, and Evaluation system designed 
 ## PII Entity Taxonomy
 
 | PII Entity Category | Detection Technique | Example Input | Synthetic Replacement |
-| :--- | :--- | :--- | :--- |
+| :---                | :--- | :--- | :--- |
 | **Full Names (`PERSON`)** | spaCy NER + Person Label Recognizer + Context Rules | `Sarthak Malvadkar` | `John Doe` |
 | **Email Addresses (`EMAIL_ADDRESS`)** | Regex + Presidio Email Recognizer | `cs.connect@kshinternational.com` | `john.doe@example.com` |
 | **Phone Numbers (`PHONE_NUMBER`)** | Indian Phone Recognizer + STD/International patterns | `+91 20 45053237` | `+91 98765 43210` |
@@ -134,55 +134,6 @@ A context-aware PII Detection, Pseudonymization, and Evaluation system designed 
 | **IP Addresses (`IP_ADDRESS`)** | IPv4 Pattern Recognizer | `192.168.1.105` | `192.0.2.45` |
 | **PAN Card Numbers (`PAN`)** | Indian Financial Identifier Pattern | `ABCDE1234F` | `PQRST5678G` |
 | **Aadhaar Numbers (`AADHAAR`)** | 12-digit Indian UID Pattern | `9876 5432 1098` | `2345 6789 0123` |
-
----
-
-## Project Structure
-
-```
-pii-redaction-system/
-├── README.md                  # System design, setup, & evaluation docs
-├── config.yaml                # Entity detection thresholds & settings
-├── requirements.txt           # Python package dependencies
-├── data/
-│   ├── input/
-│   │   └── Red Herring Prospectus.docx  # Input document
-│   └── output/
-│       └── redacted_output.docx         # Redacted output file
-├── app/
-│   ├── __init__.py
-│   ├── main.py                # Main CLI entry point
-│   ├── document/              # DOCX Reader, Writer, & Models
-│   │   ├── models.py
-│   │   ├── reader.py
-│   │   └── writer.py
-│   ├── detection/             # PII Detection Subsystem
-│   │   ├── context_rules.py
-│   │   ├── custom_recognizers.py
-│   │   ├── engine.py
-│   │   ├── entity_resolver.py
-│   │   └── presidio_detector.py
-│   ├── anonymization/         # Pseudonymization Engine
-│   │   ├── policy.py
-│   │   ├── replacement_manager.py
-│   │   └── synthetic_data.py
-│   └── validation/            # Post-redaction Validator
-│       └── validator.py
-├── evaluation/                # Evaluation Engine & Reports
-│   ├── evaluator.py
-│   ├── ground_truth.json
-│   ├── metrics.py
-│   └── report.py
-├── evaluation_report.md       # Output evaluation report
-└── tests/                     # Pytest suite
-    ├── test_consistency.py
-    ├── test_detection.py
-    ├── test_document.py
-    ├── test_recognizers.py
-    └── test_replacement.py
-```
-
----
 
 ## Setup & Quick Start
 
