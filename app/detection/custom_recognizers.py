@@ -183,6 +183,24 @@ class AadhaarRecognizer(PatternRecognizer):
         )
 
 
+class PersonLabelRecognizer(PatternRecognizer):
+    """Recognizer for Person Names following contextual field labels like 'Contact Person:'."""
+
+    def __init__(self):
+        patterns = [
+            Pattern(
+                name="person_label_pattern",
+                regex=r"\b(?:Contact Person|Promoter|Director|Key Managerial Personnel|Company Secretary|Compliance Officer|Mr\.|Ms\.|Shri)[\:\s]+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})\b",
+                score=0.85,
+            ),
+        ]
+        super().__init__(
+            supported_entity="PERSON",
+            patterns=patterns,
+            context=["contact person", "promoter", "director", "officer", "secretary", "manager"],
+        )
+
+
 def get_custom_recognizers() -> List[PatternRecognizer]:
     """Factory returning all specialized custom recognizers."""
     return [
@@ -193,4 +211,5 @@ def get_custom_recognizers() -> List[PatternRecognizer]:
         DOBRecognizer(),
         PANRecognizer(),
         AadhaarRecognizer(),
+        PersonLabelRecognizer(),
     ]

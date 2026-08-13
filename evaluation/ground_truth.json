@@ -1,0 +1,177 @@
+[
+  {
+    "text": "Sarthak Malvadkar",
+    "type": "PERSON",
+    "section": "contact_info"
+  },
+  {
+    "text": "Kushal Subbayya Hegde",
+    "type": "PERSON",
+    "section": "promoter_list"
+  },
+  {
+    "text": "Pushpa Kushal Hegde",
+    "type": "PERSON",
+    "section": "promoter_list"
+  },
+  {
+    "text": "Rajesh Kushal Hegde",
+    "type": "PERSON",
+    "section": "promoter_list"
+  },
+  {
+    "text": "Rohit Kushal Hegde",
+    "type": "PERSON",
+    "section": "promoter_list"
+  },
+  {
+    "text": "Rakhi Girija Shetty",
+    "type": "PERSON",
+    "section": "promoter_list"
+  },
+  {
+    "text": "Parag Pansare",
+    "type": "PERSON",
+    "section": "key_personnel"
+  },
+  {
+    "text": "Hitesh Ramani",
+    "type": "PERSON",
+    "section": "lead_managers"
+  },
+  {
+    "text": "cs.connect@kshinternational.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "contact_info"
+  },
+  {
+    "text": "parag.pansare@kshinternational.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "key_personnel"
+  },
+  {
+    "text": "investor.relations@kshinternational.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "corporate"
+  },
+  {
+    "text": "hitesh.ramani@citi.com",
+    "type": "EMAIL_ADDRESS",
+    "section": "lead_managers"
+  },
+  {
+    "text": "+ 91 20 45053237",
+    "type": "PHONE_NUMBER",
+    "section": "contact_info"
+  },
+  {
+    "text": "+91 20 4505 3237",
+    "type": "PHONE_NUMBER",
+    "section": "contact_info"
+  },
+  {
+    "text": "+91 22 4009 2000",
+    "type": "PHONE_NUMBER",
+    "section": "lead_managers"
+  },
+  {
+    "text": "+91 9876543210",
+    "type": "PHONE_NUMBER",
+    "section": "sample_tickets"
+  },
+  {
+    "text": "KSH INTERNATIONAL LIMITED",
+    "type": "ORGANIZATION",
+    "section": "header"
+  },
+  {
+    "text": "Bhandary Metal Extrusion Private Limited",
+    "type": "ORGANIZATION",
+    "section": "history"
+  },
+  {
+    "text": "Waterloo Industrial Park VI Private Limited",
+    "type": "ORGANIZATION",
+    "section": "promoter_list"
+  },
+  {
+    "text": "Nuvama Wealth Management Limited",
+    "type": "ORGANIZATION",
+    "section": "lead_managers"
+  },
+  {
+    "text": "ICICI Securities Limited",
+    "type": "ORGANIZATION",
+    "section": "lead_managers"
+  },
+  {
+    "text": "MUFG Intime India Private Limited",
+    "type": "ORGANIZATION",
+    "section": "registrar"
+  },
+  {
+    "text": "11/3, 11/4 and 11/5 Village Birdewadi Chakan Taluka - Khed Pune – 410 501 Maharashtra, India",
+    "type": "ADDRESS",
+    "section": "registered_office"
+  },
+  {
+    "text": "201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner Pune – 411 045 Maharashtra, India",
+    "type": "ADDRESS",
+    "section": "corporate_office"
+  },
+  {
+    "text": "801-804, Wing A, Building No. 3, Inspire BKC, G Block, Bandra Kurla Complex, Bandra East, Mumbai – 400 051, Maharashtra, India",
+    "type": "ADDRESS",
+    "section": "lead_managers"
+  },
+  {
+    "text": "July 30, 1979",
+    "type": "DATE_OF_BIRTH",
+    "section": "director_profiles"
+  },
+  {
+    "text": "June 15, 1985",
+    "type": "DATE_OF_BIRTH",
+    "section": "key_personnel"
+  },
+  {
+    "text": "December 05, 1972",
+    "type": "DATE_OF_BIRTH",
+    "section": "promoter_details"
+  },
+  {
+    "text": "192.168.1.105",
+    "type": "IP_ADDRESS",
+    "section": "system_logs"
+  },
+  {
+    "text": "10.0.4.15",
+    "type": "IP_ADDRESS",
+    "section": "system_logs"
+  },
+  {
+    "text": "4532-1100-2200-3300",
+    "type": "CREDIT_CARD",
+    "section": "payment_logs"
+  },
+  {
+    "text": "123-45-6789",
+    "type": "SSN",
+    "section": "foreign_investor"
+  },
+  {
+    "text": "ABCDE1234F",
+    "type": "PAN",
+    "section": "bidder_details"
+  },
+  {
+    "text": "PQRST5678G",
+    "type": "PAN",
+    "section": "bidder_details"
+  },
+  {
+    "text": "9876 5432 1098",
+    "type": "AADHAAR",
+    "section": "bidder_details"
+  }
+]

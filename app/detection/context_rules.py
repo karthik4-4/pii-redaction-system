@@ -1,6 +1,6 @@
 import re
 from typing import List
-from .models_import import PIIEntity  # We will import cleanly
+from app.document.models import PIIEntity
 
 EXCLUDED_PERSON_NAMES = {
     "red herring prospectus", "draft red herring prospectus",
@@ -36,8 +36,8 @@ class ContextRulesEngine:
             # Prefix context before entity (up to 40 chars)
             prefix = text_lower[max(0, start - 40):start]
 
-            # 1. Suppress Non-PII Headers / Excluded terms
-            if e_type in ("PERSON", "NAME") and e_text_lower in EXCLUDED_PERSON_NAMES:
+            # 1. Suppress Non-PII Headers / Excluded terms when exact match
+            if e_type in ("PERSON", "NAME") and (e_text_lower in EXCLUDED_PERSON_NAMES or e_text_lower in EXCLUDED_ORGANIZATIONS):
                 continue
 
             if e_type in ("ORGANIZATION", "COMPANY") and e_text_lower in EXCLUDED_ORGANIZATIONS:

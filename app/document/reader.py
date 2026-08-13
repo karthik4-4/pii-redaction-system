@@ -9,7 +9,7 @@ class DocumentReader:
         self.filepath = filepath
         self.doc = docx.Document(filepath)
 
-    def extract_blocks(()) -> List[TextBlock]:
+    def extract_blocks(self) -> List[TextBlock]:
         blocks: List[TextBlock] = []
 
         # 1. Main Document Paragraphs

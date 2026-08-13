@@ -20,8 +20,12 @@ class OutputValidator:
         """Runs post-redaction scan on output document and produces validation results."""
         logger.info(f"Running post-redaction privacy validation on '{redacted_filepath}'...")
 
-        reader = DocumentReader(redacted_filepath)
-        blocks = reader.extract_blocks()
+        try:
+            reader = DocumentReader(redacted_filepath)
+            blocks = reader.extract_blocks()
+        except Exception as e:
+            logger.error(f"Validator failed to open file '{redacted_filepath}': {e}")
+            return {"passed": False, "error": str(e)}
 
         # 1. Scan output document for remaining PII
         output_detections = self.engine.detect_document(blocks)

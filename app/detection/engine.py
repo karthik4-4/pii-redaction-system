@@ -41,8 +41,13 @@ class PIIDetectionEngine:
         if not block.text or not block.text.strip():
             return []
 
-        # 1. Presidio analyze
-        results = self.presidio.analyze(block.text, score_threshold=0.30)
+        # Target PII entities for fast evaluation
+        target_entities = [
+            "PERSON", "EMAIL_ADDRESS", "PHONE_NUMBER", "ORGANIZATION",
+            "LOCATION", "DATE_TIME", "CREDIT_CARD", "US_SSN", "IP_ADDRESS",
+            "PAN", "AADHAAR", "ADDRESS", "DATE_OF_BIRTH"
+        ]
+        results = self.presidio.analyze(block.text, entities=target_entities, score_threshold=0.30)
         entities: List[PIIEntity] = []
 
         for r in results:
