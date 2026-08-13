@@ -1,0 +1,43 @@
+default_threshold: 0.65
+
+spacy_model: "en_core_web_lg"
+fallback_spacy_model: "en_core_web_sm"
+
+entities:
+  PERSON:
+    threshold: 0.65
+    replacement_type: "PERSON"
+  EMAIL_ADDRESS:
+    threshold: 0.70
+    replacement_type: "EMAIL"
+  PHONE_NUMBER:
+    threshold: 0.65
+    replacement_type: "PHONE"
+  ORGANIZATION:
+    threshold: 0.65
+    replacement_type: "COMPANY"
+  ADDRESS:
+    threshold: 0.60
+    replacement_type: "ADDRESS"
+  DATE_OF_BIRTH:
+    threshold: 0.75
+    replacement_type: "DOB"
+  CREDIT_CARD:
+    threshold: 0.85
+    replacement_type: "CREDIT_CARD"
+  SSN:
+    threshold: 0.85
+    replacement_type: "SSN"
+  IP_ADDRESS:
+    threshold: 0.85
+    replacement_type: "IP"
+  PAN:
+    threshold: 0.80
+    replacement_type: "PAN"
+  AADHAAR:
+    threshold: 0.80
+    replacement_type: "AADHAAR"
+
+faker:
+  locale: "en_IN"
+  seed: 42
