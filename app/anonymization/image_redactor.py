@@ -1,17 +1,17 @@
 import io
 import hashlib
 import re
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional, List, Any
 from PIL import Image, ImageDraw, ImageFont
 from app.document.models import TextBlock, PIIEntity
 
 class DocxImageRedactor:
-    """Redacts and pseudonymizes embedded document images with referentially consistent logos."""
+    """Redacts and pseudonymizes embedded document images with contextual entity mapping."""
 
     def __init__(self, replacement_map: Dict[Tuple[str, str], str]):
         self.replacement_map = replacement_map
-        self.org_replacement_pairs = self._build_org_pairs()
-        self.primary_org = self.org_replacement_pairs[0] if self.org_replacement_pairs else ("Company", "Synthetic Tech")
+        self.org_pairs = self._build_org_pairs()
+        self.primary_org = self.org_pairs[0] if self.org_pairs else ("Company", "Synthetic Tech")
         self.image_cache: Dict[str, bytes] = {}
 
     def _build_org_pairs(self) -> List[Tuple[str, str]]:
@@ -22,7 +22,7 @@ class DocxImageRedactor:
         return pairs
 
     def get_initials(self, name: str) -> str:
-        stop_words = {"LIMITED", "LTD", "PRIVATE", "PVT", "INC", "LLC", "AND", "&", "OF", "THE", "FOR"}
+        stop_words = {"LIMITED", "LTD", "PRIVATE", "PVT", "INC", "LLC", "AND", "&", "OF", "THE", "FOR", "CORP", "CORPORATION"}
         words = [w for w in name.split() if w.upper() not in stop_words]
         if not words:
             words = name.split()
@@ -33,7 +33,6 @@ class DocxImageRedactor:
         return "SYN"
 
     def _extract_colors(self, img: Image.Image) -> Tuple[Tuple[int, int, int], Tuple[int, int, int]]:
-        """Extracts dominant background and text accent colors from original image."""
         try:
             small = img.resize((50, 50)).convert("RGB")
             colors = small.getcolors(2500)
@@ -42,7 +41,6 @@ class DocxImageRedactor:
             sorted_colors = sorted(colors, key=lambda x: x[0], reverse=True)
             bg_color = sorted_colors[0][1]
 
-            # Find contrasting text color
             fg_color = (30, 60, 110)
             for count, col in sorted_colors[1:]:
                 dist = abs(col[0] - bg_color[0]) + abs(col[1] - bg_color[1]) + abs(col[2] - bg_color[2])
@@ -67,8 +65,7 @@ class DocxImageRedactor:
             img = Image.open(io.BytesIO(image_bytes))
             width, height = img.size
 
-            # Skip large full-page diagram scans (> 1200px)
-            if width > 1200 or height > 1200:
+            if width > 1400 or height > 1400:
                 return None
 
             mode = "RGBA" if "png" in content_type.lower() else "RGB"
@@ -85,7 +82,6 @@ class DocxImageRedactor:
                 draw = ImageDraw.Draw(res)
                 text_color = fg_color
 
-            # Draw outer border matching brand accent
             margin = max(2, min(width, height) // 20)
             draw.rectangle(
                 [(margin, margin), (width - margin, height - margin)],
@@ -93,7 +89,6 @@ class DocxImageRedactor:
                 width=max(2, min(width, height) // 40)
             )
 
-            # Render synthetic company logo initials
             initials = self.get_initials(org_replacement)
             try:
                 font_size = max(12, min(width, height) // 3)
@@ -122,7 +117,7 @@ class DocxImageRedactor:
         modified_count = 0
         part_org_map: Dict[Any, str] = {}
 
-        # 1. Contextual Mapping: Map image rIds to surrounding ORGANIZATION entities
+        # 1. Map paragraph & table cell drawing rIds to contextual organization entities
         if blocks:
             for b_idx, block in enumerate(blocks):
                 raw = getattr(block, "raw_element", None)
@@ -130,14 +125,15 @@ class DocxImageRedactor:
                     continue
 
                 xml = raw._element.xml
-                rids = re.findall(r'r:embed="(rId\d+)"', xml)
+                rids = re.findall(r'r:(?:embed|id)="(rId\d+)"', xml)
                 if not rids:
                     continue
 
-                # Find organization in current or adjacent blocks
+                # Find organization entity in surrounding 5 blocks
                 assoc_org = None
-                search_indices = [b_idx, max(0, b_idx - 1), min(len(blocks) - 1, b_idx + 1)]
-                for idx in search_indices:
+                start_idx = max(0, b_idx - 3)
+                end_idx = min(len(blocks), b_idx + 4)
+                for idx in range(start_idx, end_idx):
                     entities = getattr(blocks[idx], "entities", None) or (block_entities.get(blocks[idx].block_id, []) if block_entities else [])
                     for e in entities:
                         if e.entity_type in ("ORGANIZATION", "COMPANY"):
@@ -157,7 +153,18 @@ class DocxImageRedactor:
                                 part = doc.part.rels[rid].target_part
                                 part_org_map[part] = synth_name
 
-        # 2. Redact Image Parts with specific mapped organization initials
+        # 2. Also check headers and footers for embedded images
+        for section in doc.sections:
+            for container in (section.header, section.footer):
+                if not container:
+                    continue
+                for rel in container.part.rels.values():
+                    if "image" in rel.target_ref:
+                        part = rel.target_part
+                        if part not in part_org_map:
+                            part_org_map[part] = self.primary_org[1]
+
+        # 3. Apply referentially consistent logo pseudonymization to image blobs
         processed_parts = set()
         for rel in doc.part.rels.values():
             if "image" in rel.target_ref:
@@ -166,7 +173,6 @@ class DocxImageRedactor:
                     continue
                 processed_parts.add(image_part)
 
-                # Determine target organization replacement name for this image
                 target_synth_name = part_org_map.get(image_part, self.primary_org[1])
                 new_blob = self.generate_logo_bytes(
                     image_part.blob,
