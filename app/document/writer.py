@@ -48,9 +48,9 @@ class DocumentWriter:
             if replaced_in_block:
                 paragraph.text = full_text
 
-        # Redact and pseudonymize embedded document logo images
+        # Redact and pseudonymize embedded document logo images with contextual entity mapping
         image_redactor = DocxImageRedactor(replacement_map)
-        image_redactor.process_document_images(self.doc)
+        image_redactor.process_document_images(self.doc, blocks, block_entities)
 
         return total_replacements
 

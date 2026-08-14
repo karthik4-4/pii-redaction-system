@@ -2,24 +2,30 @@ import io
 from PIL import Image
 from app.anonymization.image_redactor import DocxImageRedactor
 
-def test_docx_image_redactor():
+def test_contextual_docx_image_redactor():
     replacement_map = {
         ("ORGANIZATION", "Karthik and Thanush"): "Maharajan Tech",
+        ("ORGANIZATION", "ICICI Securities Limited"): "Apex Capital Limited",
     }
     redactor = DocxImageRedactor(replacement_map)
 
-    assert redactor.orig_initials == "KT"
-    assert redactor.syn_initials == "MT"
+    assert redactor.get_initials("Maharajan Tech") == "MT"
+    assert redactor.get_initials("Apex Capital Limited") == "AC"
+    assert redactor.get_initials("Karthik and Thanush") == "KT"
 
-    # Create dummy original logo image
+    # Create dummy image
     img = Image.new("RGBA", (200, 100), (255, 255, 255, 255))
     buf = io.BytesIO()
     img.save(buf, format="PNG")
     original_bytes = buf.getvalue()
 
-    redacted_bytes = redactor.redact_image_bytes(original_bytes, "image/png")
-    assert redacted_bytes is not None
-    assert len(redacted_bytes) > 0
+    redacted_mt = redactor.generate_logo_bytes(original_bytes, "image/png", "Maharajan Tech")
+    assert redacted_mt is not None
+    assert len(redacted_mt) > 0
 
-    redacted_img = Image.open(io.BytesIO(redacted_bytes))
-    assert redacted_img.size == (200, 100)
+    redacted_ac = redactor.generate_logo_bytes(original_bytes, "image/png", "Apex Capital Limited")
+    assert redacted_ac is not None
+    assert len(redacted_ac) > 0
+
+    # Ensure distinct logo image blobs for distinct companies
+    assert redacted_mt != redacted_ac
