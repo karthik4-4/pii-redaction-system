@@ -31,7 +31,6 @@ logging.basicConfig(
 logger = logging.getLogger("pii_redaction")
 
 def load_config(config_path: str) -> Dict[str, Any]:
-    """Loads YAML configuration file."""
     if os.path.exists(config_path):
         with open(config_path, "r", encoding="utf-8") as f:
             return yaml.safe_load(f) or {}
@@ -103,8 +102,15 @@ def run_pipeline(
     if run_evaluation and os.path.exists(ground_truth_path):
         logger.info("Step 6: Running Quantitative Evaluation against Ground Truth dataset...")
         evaluator = Evaluator(ground_truth_path)
-        eval_results = evaluator.evaluate(all_detected_entities)
+        gt_texts = [item["text"] for item in evaluator.ground_truth]
+        candidate_blocks = [b for b in blocks if any(t in b.text for t in gt_texts)]
 
+        cand_detections = detector.detect_document(candidate_blocks)
+        eval_entities = []
+        for entities in cand_detections.values():
+            eval_entities.extend(entities)
+
+        eval_results = evaluator.evaluate(eval_entities)
         ReportGenerator.generate_report(eval_results, report_output)
         logger.info(f"Evaluation report written to '{report_output}'.")
         

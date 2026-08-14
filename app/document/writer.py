@@ -1,9 +1,10 @@
 import docx
 from typing import List, Dict
-from .models import TextBlock, PIIEntity, ReplacementMapping
+from .models import TextBlock, PIIEntity
+from app.anonymization.image_redactor import DocxImageRedactor
 
 class DocumentWriter:
-    """Updates Word Document text content with synthetic replacements while preserving styling."""
+    """Updates Word Document text content and embedded images with synthetic replacements."""
 
     def __init__(self, reader_doc: docx.Document):
         self.doc = reader_doc
@@ -17,7 +18,7 @@ class DocumentWriter:
         total_replacements = 0
 
         for block in blocks:
-            entities = block.entities if hasattr(block, 'entities') else block_entities.get(block.block_id, [])
+            entities = getattr(block, 'entities', None) or block_entities.get(block.block_id, [])
             if not entities:
                 continue
 
@@ -25,7 +26,6 @@ class DocumentWriter:
             if not paragraph:
                 continue
 
-            # Sort entities from last to first by character start offset
             sorted_entities = sorted(entities, key=lambda e: e.start, reverse=True)
             full_text = block.text
             replaced_in_block = False
@@ -46,8 +46,11 @@ class DocumentWriter:
                     replaced_in_block = True
 
             if replaced_in_block:
-                # Update paragraph text in docx element
                 paragraph.text = full_text
+
+        # Redact and pseudonymize embedded document logo images
+        image_redactor = DocxImageRedactor(replacement_map)
+        image_redactor.process_document_images(self.doc)
 
         return total_replacements
 
